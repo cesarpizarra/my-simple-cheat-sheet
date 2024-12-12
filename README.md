@@ -1,13 +1,14 @@
-# Cezaru Cheat Sheet
+# My Simple Cheat Sheet
 
 This repository contains a collection of quick reference guides and cheat sheets on various topics.
 
 ## Topics Covered
 
-- [Git Commands](./sheets/git.md)
-- [Docker](./sheets/docker.md)
-- [Creating an SSH Key](./sheets/ssh-key.md)
-- [Creating an Secret Key](./sheets/secret.md)
+- [Git Commands](./notes/git.md)
+- [Docker](./notes/docker.md)
+- [Creating an SSH Key](./notes/ssh-key.md)
+- [Creating an Secret Key](./notes/secret.md)
+- [Deploying a Next.js Application with Docker and Nginx on Ubuntu (VPS Hosting)](./notes/next-nginx.md)
 
 ## Contributing
 
