@@ -140,6 +140,35 @@ services:
 
 ```
 
+### Run Docker Compose
+
+```bash
+# Build and start all services defined in docker-compose.yml in detached mode
+docker-compose up --build -d
+
+# Start services without rebuilding images
+docker-compose up -d
+
+# Start services and display logs in real-time
+docker-compose up
+
+# Rebuild a specific service and run it in detached mode
+docker-compose up --build -d <service_name>
+
+# Start services with a specific docker-compose file (other than the default docker-compose.yml)
+docker-compose -f <custom-compose-file.yml> up -d
+
+# Scale a specific service to run multiple instances (e.g., 3 instances of 'web')
+docker-compose up -d --scale web=3
+
+# Start services, forcing the removal of orphaned containers (services removed from the compose file)
+docker-compose up -d --remove-orphans
+
+# Recreate containers even if they have not changed
+docker-compose up --force-recreate -d
+
+```
+
 ### Useful Tips
 
 ```bash
