@@ -14,6 +14,6 @@ This repository contains a collection of quick reference guides and cheat sheets
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b new-cheatsheet`
-3. Commit your changes: `git commit -am 'Add some cheatsheet'`
+3. Commit your changes: `git commit -m 'Add some cheatsheet'`
 4. Push to the branch: `git push origin new-cheatsheet`
 5. Submit a pull request :D
