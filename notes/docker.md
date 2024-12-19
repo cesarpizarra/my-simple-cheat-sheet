@@ -6,6 +6,9 @@
 # List all running containers
 docker ps
 
+# Start a container
+docker start <container_id>
+
 # Stop a container
 docker stop <container_id>
 
@@ -46,6 +49,9 @@ docker network prune
 
 # Remove all dangling volumes
 docker volume prune
+
+# Remove all docker builds
+docker builder prune
 
 ```
 
@@ -169,6 +175,23 @@ docker-compose up --force-recreate -d
 
 ```
 
+### Docker Network
+
+```bash
+# Inspect the list of active networks
+docker network ls
+
+# Create a network
+docker network create shared-network # sample network name
+
+# Manually connect  mysql image to shared network
+docker network connect shared-network mysql
+
+# Network inspect
+docker network inspect shared-network
+
+```
+
 ### Useful Tips
 
 ```bash
@@ -188,4 +211,9 @@ docker stop $(docker ps -q)
 # Remove all containers (stopped and running)
 docker rm $(docker ps -aq)
 
+# Access the container shell
+docker exec -it <mysql_container_id> bash
+
+# Once inside the container, use the MySQL CLI to connect
+mysql -u root -p
 ```
