@@ -46,7 +46,7 @@ docker-compose --version
 
 ```bash
 # Navigate to the directory where you want to clone the repository
-cd /var/www
+cd /my_app
 
 # Clone the repository from GitHub (replace <repository-url> with your repo URL)
 git clone <repository-url> my-nextjs-app
@@ -85,16 +85,7 @@ ufw allow 443/tcp
 ufw reload
 ```
 
-### Step 9: Configure Firewall
-
-```bash
-# If you have enabled UFW firewall, you need to add ports HTTP and HTTPS:
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw reload
-```
-
-### Step 10: Install and Configure Nginx as a Reverse Proxy
+### Step 9: Install and Configure Nginx as a Reverse Proxy
 
 ```bash
 # Install Nginx:
@@ -109,7 +100,8 @@ sudo nano /etc/nginx/sites-available/your-nextjs-app
 ```bash
 # Add the following configuration:
 server {
-    server_name your_domain;
+    listen 80;
+    server_name your_domain_or_ip;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -119,23 +111,6 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/your_domain/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/your_domain/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-}
-server {
-    if ($host = your_domain) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-
-    listen 80;
-    server_name your_domain;
-    return 404; # managed by Certbot
 }
 ```
 
@@ -146,7 +121,7 @@ Create a symbolic link to enable this configuration:
 ```bash
 
 # Enable the Nginx configuration
-sudo ln -s /etc/nginx/sites-available/nextjs /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/your-nextjs-app /etc/nginx/sites-enabled/
 
 # Test and restart Nginx
 sudo nginx -t
@@ -154,7 +129,7 @@ sudo systemctl restart nginx
 
 ```
 
-### Step 11: Secure Your Application with Let's Encrypt
+### Step 10: Secure Your Application with Let's Encrypt
 
 ```bash
 
@@ -166,8 +141,6 @@ sudo certbot --nginx -d your_domain
 
 # Test auto-renewal
 sudo certbot renew --dry-run
-
-
 ```
 
 ### Step 12: Verify Your Deployment
